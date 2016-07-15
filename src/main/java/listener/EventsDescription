@@ -1,0 +1,16 @@
+* javax.servlet.AsyncEvent
+* Event that gets fired when the asynchronous operation initiated on a ServletRequest has completed, timed out, or
+* produced an error.
+
+* javax.servlet.http.HttpSessionBindingEvent
+* Event that gets fired when it is bound or unbound from a session
+
+* javax.servlet.http.HttpSessionEvent
+* This is the class representing event notifications for changes to sessions within a web application.
+
+* javax.servlet.ServletContextEvent
+* This is the event class for notifications about changes to the servlet context of a web application.
+
+* javax.servlet.ServletRequestEvent
+* Events of this kind indicate lifecycle events for a ServletRequest. The source of the event is the ServletContext of
+* this web application.
