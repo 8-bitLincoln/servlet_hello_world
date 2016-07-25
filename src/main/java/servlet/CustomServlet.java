@@ -1,8 +1,10 @@
 package servlet;
 
+import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
 
+@WebServlet(urlPatterns = "/", asyncSupported = true)
 public class CustomServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,6 +22,12 @@ public class CustomServlet extends HttpServlet {
         //present to session listener
         HttpSession session = req.getSession();
         session.invalidate();
+
+        // an AsyncContext is created, now the response will be completed
+        // not when doGet finalizes its execution, but when
+        // myAsyncContext.complete() is called.
+        AsyncContext myAsyncContext = req.startAsync(req, resp);
+        myAsyncContext.complete();
 
         URL url = new URL("localchost");
         url.openConnection();
